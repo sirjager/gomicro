@@ -1,4 +1,4 @@
-# Go Microservice Starter Template
+# GoMicro Starter Template
 
 This repository serves as a starter template for building microservices in Go. It provides a basic structure and essential components to kickstart the development of a microservice-based application.
 
