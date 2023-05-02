@@ -10,7 +10,7 @@ STATIK_OUT=./docs
 SWAGGER_OUT=./docs/swagger
 
 # TEST: database configs 
-DB_MIGRATIONS=./internal/db/migration
+DB_MIGRATIONS=./migrations
 DB_URL=postgres://postgres:password@localhost:5432/databasename?sslmode=disable
 
 # Generate protobuf and gRPC code, Swagger documentation, and static assets

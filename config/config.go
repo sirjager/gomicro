@@ -46,10 +46,6 @@ func LoadConfigs(path string, name string) (config Config, err error) {
 	// Construct the DBUrl using the DBConfig values.
 	config.Database.Url = fmt.Sprintf("%s://%s:%s@%s:%s/%s%s", config.Database.Driver, config.Database.User, config.Database.Pass, config.Database.Host, config.Database.Port, config.Database.Name, config.Database.Args)
 
-	// Set the default migrations value to include the file path.
-	if config.Database.Migrate == "" {
-		config.Database.Migrate = "./internal/db/migration"
-	}
 	config.Database.Migrate = "file://" + config.Database.Migrate
 	return
 }

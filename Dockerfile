@@ -29,7 +29,15 @@ RUN apk add libc6-compat
 EXPOSE 4420
 EXPOSE 4421
 
-COPY --from=builder /app/main .
-COPY --from=builder /app/example.env .
+COPY  start.sh .
+COPY  wait-for.sh .
+COPY example.env .
+COPY ./migrations .
 
-ENTRYPOINT [ "/app/main" ]
+RUN chmod +x start.sh wait-for.sh
+
+COPY --from=builder /app/main .
+
+ENTRYPOINT [ "/app/start.sh", 'localhost:5432', '--', '/app/start.sh' ]
+
+CMD [ "/app/main" ]
