@@ -32,7 +32,7 @@ EXPOSE 4421
 COPY  start.sh .
 COPY  wait-for.sh .
 COPY example.env .
-COPY ./migrations .
+COPY ./migrations ./migrations
 
 RUN chmod +x start.sh wait-for.sh
 

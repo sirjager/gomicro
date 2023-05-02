@@ -1,5 +1,7 @@
 # GoMicro Starter Template
 
+![GitHub Workflow Status (with branch)](https://img.shields.io/github/actions/workflow/status/sirjager/gomicro/release.yaml)
+
 This repository serves as a starter template for building microservices in Go. It provides a basic structure and essential components to kickstart the development of a microservice-based application.
 
 ## Directory Structure
