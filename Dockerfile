@@ -38,6 +38,4 @@ RUN chmod +x start.sh wait-for.sh
 
 COPY --from=builder /app/main .
 
-ENTRYPOINT [ "/app/start.sh", 'localhost:5432', '--', '/app/start.sh' ]
-
-CMD [ "/app/main" ]
+ENTRYPOINT [ "/app/main" ]
