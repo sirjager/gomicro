@@ -10,9 +10,9 @@ services:
     volumes:
       - db:/var/lib/postgresql/data
     environment:
-      - POSTGRES_USER=${DATABASE_USER}
-      - POSTGRES_PASSWORD=${DATABASE_PASS}
-      - POSTGRES_DB=${DATABASE_NAME}
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_PASSWORD=${DB_PASS}
+      - POSTGRES_DB=${DB_NAME}
 
   gomicro:
     image: ghcr.io/sirjager/gomicro:latest
@@ -25,9 +25,9 @@ services:
     environment:
       - DB_HOST=db
       - DB_PORT=5432
-      - DB_NAME=${DATABASE_NAME}
-      - DB_USER=${DATABASE_USER}
-      - DB_PASS=${DATABASE_PASS}
+      - DB_NAME=${DB_NAME}
+      - DB_USER=${DB_USER}
+      - DB_PASS=${DB_PASS}
       - DB_DRIVER=postgres
       - DB_ARGS=?sslmode=disable
       - DB_MIGRATE=file://./migrate/postgres
