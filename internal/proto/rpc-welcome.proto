@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package gomicro;
+
+// Specify the Go package name for the generated code.
+option go_package = "github.com/sirjager/rpcs/gomicro";
+
+// WelcomeRequest represents a request for the welcome message.
+message WelcomeRequest {}
+
+// WelcomeResponse represents the response containing the welcome message.
+message WelcomeResponse {
+    // Message represents the welcome message.
+    string message = 1;
+}

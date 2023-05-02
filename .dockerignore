@@ -1,0 +1,19 @@
+# filter all except example.env
+.env
+*.env
+!example.env
+
+# filter temp files and folders
+.temp
+.tmp
+temp
+
+# vendor
+vendor
+
+# miscellaneous files and folders
+bin/
+data/
+dist/
+build/
+

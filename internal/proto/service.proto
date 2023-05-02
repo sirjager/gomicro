@@ -1,0 +1,67 @@
+syntax = "proto3";
+
+package gomicro;
+
+import "google/api/annotations.proto";
+import "protoc-gen-openapiv2/options/annotations.proto";
+
+import "rpc-welcome.proto";
+import "rpc-health.proto";
+
+
+// Specify the Go package name for the generated gRPC stubs. 
+// The package name determines the import path used in other Go files to reference the generated code. 
+// In this case, the github.com/sirjager/rpcs/gomicro package is used to organize and import the generated gRPC stubs 
+// for the Go Microservice Template.
+option go_package = "github.com/sirjager/rpcs/gomicro";
+
+
+// Define OpenAPI v2 options for generating Swagger documentation.
+option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_swagger) = {
+    info: {
+        title: "Go Microservice Template";
+        version: "0.1.0";
+        contact: {
+            name: "SirJager";
+            url: "https://github.com/sirjager/gomicro";
+        };
+    };
+};
+
+// Micro service 
+service GoMicro {
+
+    // Define OpenAPI v2 options for generating tags and external documentation.
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_tag) = {
+        description: "GoMicro is a comprehensive starter template designed to accelerate the development of microservices using the Go programming language. It provides a solid foundation and essential components to expedite the creation of scalable and modular microservice architectures";
+        external_docs: {
+            url: "https://github.com/sirjager/gomicro";
+            description: "Find out more about GoMicro";
+        };
+    };
+
+    // Welcome endpoint returns a welcome message.
+    rpc Welcome(WelcomeRequest) returns (WelcomeResponse) {
+        option (google.api.http) = {
+            get: "/"
+        };
+        option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+            description: "Returns a welcome message";
+            summary: "Welcome Message";
+            tags: "System";
+        };
+    }
+
+    // Health endpoint returns the health status of the API.
+    rpc Health(HealthRequest) returns (HealthResponse) {
+        option (google.api.http) = {
+            get: "/v1/health"
+        };
+        option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+            description: "Returns the health status of the API";
+            summary: "API Health";
+            tags: "System";
+        };
+    }
+
+}

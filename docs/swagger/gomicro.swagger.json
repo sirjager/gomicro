@@ -1,0 +1,141 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Go Microservice Template",
+    "version": "0.1.0",
+    "contact": {
+      "name": "SirJager",
+      "url": "https://github.com/sirjager/gomicro"
+    }
+  },
+  "tags": [
+    {
+      "name": "GoMicro",
+      "description": "GoMicro is a comprehensive starter template designed to accelerate the development of microservices using the Go programming language. It provides a solid foundation and essential components to expedite the creation of scalable and modular microservice architectures",
+      "externalDocs": {
+        "description": "Find out more about GoMicro",
+        "url": "https://github.com/sirjager/gomicro"
+      }
+    }
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/": {
+      "get": {
+        "summary": "Welcome Message",
+        "description": "Returns a welcome message",
+        "operationId": "GoMicro_Welcome",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/gomicroWelcomeResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "System"
+        ]
+      }
+    },
+    "/v1/health": {
+      "get": {
+        "summary": "API Health",
+        "description": "Returns the health status of the API",
+        "operationId": "GoMicro_Health",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/gomicroHealthResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "System"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "gomicroHealthResponse": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string",
+          "description": "Status represents the current status of the API."
+        },
+        "uptime": {
+          "type": "string",
+          "description": "Uptime represents the duration since the API was started."
+        },
+        "started": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Started represents the timestamp when the API was started."
+        },
+        "timestamp": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Timestamp represents the current timestamp."
+        }
+      },
+      "description": "HealthResponse represents the response containing the health status of the API."
+    },
+    "gomicroWelcomeResponse": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string",
+          "description": "Message represents the welcome message."
+        }
+      },
+      "description": "WelcomeResponse represents the response containing the welcome message."
+    },
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": {}
+    },
+    "rpcStatus": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    }
+  }
+}

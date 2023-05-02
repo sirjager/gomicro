@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+package gomicro;
+
+// Specify the Go package name for the generated code.
+option go_package = "github.com/sirjager/rpcs/gomicro";
+
+// Import necessary protobuf files for timestamp and duration.
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/duration.proto";
+
+// HealthRequest represents a request for checking the health of the API.
+message HealthRequest {}
+
+// HealthResponse represents the response containing the health status of the API.
+message HealthResponse {
+    // Status represents the current status of the API.
+    string status = 1;
+
+    // Uptime represents the duration since the API was started.
+    google.protobuf.Duration uptime = 2;
+
+    // Started represents the timestamp when the API was started.
+    google.protobuf.Timestamp started = 3;
+
+    // Timestamp represents the current timestamp.
+    google.protobuf.Timestamp timestamp = 4;
+}
