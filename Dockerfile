@@ -13,7 +13,6 @@ COPY ./config ./config
 COPY ./docs ./docs
 COPY ./internal ./internal
 COPY ./pkg ./pkg
-COPY example.env .
 
 ENV GOOS=linux
 ENV GOARCH=amd64

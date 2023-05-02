@@ -1,14 +1,21 @@
 version: '3'
 
 volumes:
-  gomicrodb:
+  gomicro_db:
+  gomicro_redis:
 
 services:
-  gomicrodb:
-    container_name: gomicrodb
+  gomicro_redis:
+    container_name: gomicro_redis
+    image: redis:latest
+    volumes:
+      - gomicro_redis:/data
+
+  gomicro_db:
+    container_name: gomicro_db
     image: postgres:14-alpine
     volumes:
-      - gomicrodb:/var/lib/postgresql/data
+      - gomicro_db:/var/lib/postgresql/data
     environment:
       - POSTGRES_USER=${DB_USER}
       - POSTGRES_PASSWORD=${DB_PASS}
@@ -18,12 +25,13 @@ services:
     image: ghcr.io/sirjager/gomicro:latest
     container_name: gomicro
     depends_on:
-      - gomicrodb
+      - gomicro_db
+      - gomicro_redis
     ports:
       - 4420
-      - 4424
+      - 4421
     environment:
-      - DB_HOST=gomicrodb
+      - DB_HOST=gomicro_db
       - DB_PORT=5432
       - DB_NAME=${DB_NAME}
       - DB_USER=${DB_USER}
@@ -34,5 +42,6 @@ services:
       - GMAIL_NAME=${GMAIL_NAME}
       - GMAIL_USER=${GMAIL_USER}
       - GMAIL_PASS=${GMAIL_PASS}
-    entrypoint: ['/app/wait-for.sh', 'gomicrodb:5432', '--', '/app/start.sh']
+      - REDIS_ADDR=gomicro_redis:6379
+    entrypoint: ['/app/wait-for.sh', 'gomicro_db:5432', '--', '/app/start.sh']
     command: ['/app/main']

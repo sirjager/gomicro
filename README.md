@@ -4,6 +4,8 @@
 
 This repository serves as a starter template for building microservices in Go. It provides a basic structure and essential components to kickstart the development of a microservice-based application.
 
+#### Example Repository [TrueAuth: A standalone authentication server](https://github.com/sirjager/trueauth)
+
 ## Directory Structure
 
 Here is an overview of the directory structure:
